@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 from prettytable import PrettyTable
 from mpl_toolkits.mplot3d import Axes3D
 
-# rough estimate from chatgpt
+# https://forum.miata.net/vb/showthread.php?t=466026
 torque_curve = {
     500: 67, # guess
     1000: 80, # guess
