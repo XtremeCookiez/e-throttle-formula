@@ -24,3 +24,4 @@ I made a few assumptions that may need tweaking once on the car:
 
 1. The cross sectional area of the intake with the throttle at a certain percentage follows the function labeled `calculate_cross_sectional_area`. Basically assume the throttle blade takes up the area of `cos(TP*pi/200)` (where `TP` is throttle position from 0-100).
 2. The cross sectional area directly correlates with torque production across all RPMs. This is likely not true if the throttle body is not a restriction at redline. Likely, at lower RPMs the intake manifold reaches atmospheric pressure long before 100% throttle opening.
+3. The stock NC Miata follows [this blue torque curve](https://forum.miata.net/vb/showthread.php?t=466026)
