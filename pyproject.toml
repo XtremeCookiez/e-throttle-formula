@@ -1,19 +1,48 @@
-[tool.poetry]
+# [tool.poetry]
+# name = "throttle-table"
+# version = "0.1.0"
+# description = "makes throttle table for the nc"
+# authors = ["Xtreme Cookiez <10819480+XtremeCookiez@users.noreply.github.com>"]
+# readme = "README.md"
+# package-mode = false
+
+# [tool.poetry.dependencies]
+# python = "^3.10"
+# prettytable = "^3.16.0"
+
+
+# [tool.poetry.group.dev.dependencies]
+# black = "^25.1.0"
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "black<26.0.0,>=25.1.0",
+]
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[project]
+authors = [
+    {name = "Xtreme Cookiez", email = "10819480+XtremeCookiez@users.noreply.github.com"},
+]
+requires-python = "<4.0,>=3.10"
+dependencies = [
+    "matplotlib>=3.10.3",
+    "numpy>=2.2.6",
+    "prettytable<4.0.0,>=3.16.0",
+]
 name = "throttle-table"
 version = "0.1.0"
 description = "makes throttle table for the nc"
-authors = ["Xtreme Cookiez <10819480+XtremeCookiez@users.noreply.github.com>"]
 readme = "README.md"
-package-mode = false
 
-[tool.poetry.dependencies]
-python = "^3.13"
-prettytable = "^3.16.0"
-
-
-[tool.poetry.group.dev.dependencies]
-black = "^25.1.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "black<26.0.0,>=25.1.0",
+]
