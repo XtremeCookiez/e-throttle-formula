@@ -9,11 +9,11 @@ from mpl_toolkits.mplot3d import Axes3D
 
 # https://forum.miata.net/vb/showthread.php?t=466026
 torque_curve = {
-    500: 67, # guess
-    1000: 80, # guess
-    1500: 95, # guess
-    2000: 110, # guess
-    2500: 120, # guess
+    500: 67,  # guess
+    1000: 80,  # guess
+    1500: 95,  # guess
+    2000: 110,  # guess
+    2500: 120,  # guess
     3000: 130,
     3500: 134,
     4000: 134,
@@ -59,7 +59,8 @@ def app_to_tp(app: float) -> float:
     # return 100 * (1 - math.cos(app * math.pi / 200))
     return (200 / math.pi) * math.acos(1 - (app / 100))
 
-def rpm_app_to_tp(rpm:int, app:float):
+
+def rpm_app_to_tp(rpm: int, app: float):
     """
     This function contains all your desired logic to calculate
     the desired tp from app and rpm.
@@ -78,13 +79,16 @@ def rpm_app_to_tp(rpm:int, app:float):
     if tp > 100:
         tp = 100
 
+
 def calculate_cross_sectional_area(tp: float):
     return 100 * (1 - math.cos(tp * math.pi / 200))
 
-def calculate_tp_from_cross_section(cs:float):
+
+def calculate_tp_from_cross_section(cs: float):
     if cs > 100:
         cs = 100
     return (200 / math.pi) * math.acos(1 - (cs / 100))
+
 
 def plot_app_to_tp_3d(
     apps,
@@ -218,19 +222,34 @@ for c in range(len(app_to_needed_cs)):
 print(printing)
 
 print("TP")
+# printing = PrettyTable()
+
+# field_names = ["APP"]
+# for i in rpms:
+#     field_names.append(str(i))
+
+# # printing.field_names = field_names
+# printing.add_column("APP", [str(app) for app in apps])
+# for c in range(len(app_to_tp_table)):
+#     printing.add_column(str(rpms[c]), app_to_tp_table[c])
+
+# print(printing)
+
+# Transpose the app_to_tp_table so each row corresponds to one APP value
+transposed_table = list(zip(*app_to_tp_table))
+# print(transposed_table)
 printing = PrettyTable()
 
 field_names = ["APP"]
 for i in rpms:
     field_names.append(str(i))
 
-# printing.field_names = field_names
-printing.add_column("APP", [str(app) for app in apps])
+# First column is RPM values
+printing.field_names =  ["APP", *[str(round(app,2)) for app in apps]]
 for c in range(len(app_to_tp_table)):
-    printing.add_column(str(rpms[c]), app_to_tp_table[c])
+    printing.add_row([str(rpms[c]), *app_to_tp_table[c]])
 
 print(printing)
-
 
 plot_app_to_tp_3d_plotly(apps, rpms, app_to_tp_table, f"throttle-graph")
 plot_app_to_tp_3d_plotly(
